@@ -7,7 +7,7 @@ namespace Library.EF
 {
     class BooksContext : DbContext
     {
-        public BooksContext() : base("LibraryDB")
+        public BooksContext() : base("Library")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BooksContext,
                 Library.EF.Migrations.Configuration>());
@@ -41,6 +41,7 @@ namespace Library.EF
             modelBuilder.Entity<Book>().ToTable("Books");
             modelBuilder.Entity<Newspaper>().ToTable("Newspapers");
             modelBuilder.Entity<Magazine>().ToTable("Magazines");
+
             modelBuilder.Entity<Reader>();
             modelBuilder.Entity<PublicationInStorage>().HasKey(p => new { p.PublicationId, p.StorageId });
         }

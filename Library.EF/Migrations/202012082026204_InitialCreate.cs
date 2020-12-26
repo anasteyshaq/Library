@@ -24,7 +24,7 @@
                 c => new
                 {
                     Id = c.Int(nullable: false, identity: true),
-                    DateInSystem = c.DateTime(nullable: false),
+                    DateInSystem = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     Publication_Id = c.Int(nullable: false),
                 })
                 .PrimaryKey(t => t.Id)

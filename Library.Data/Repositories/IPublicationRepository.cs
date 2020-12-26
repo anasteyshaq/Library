@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Data.Repositories
 {
-    public interface ICatalog
+    public interface IPublicationRepository
     {
         List<Publication> GetAllPublications(); // получить все публикации
         Publication GetPublicationDetails(int PpublicationId); // получить информацию о публикации по Id

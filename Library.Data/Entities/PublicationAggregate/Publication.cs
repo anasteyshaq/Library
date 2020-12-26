@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library.Data
 {
@@ -9,6 +9,7 @@ namespace Library.Data
         public string Name { get; set; }
         public string Publisher { get; set; }
         public int? NofPages { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? PublicationDate { get; set; }
     }
 }

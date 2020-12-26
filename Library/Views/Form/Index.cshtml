@@ -1,0 +1,41 @@
+﻿@model Library.Models.CreateCatalogModel
+
+@{
+    ViewBag.Title = "Catalog";
+}
+
+<h2>База книг</h2>
+@using (Html.BeginForm("CreateApplication", "Form"))
+{
+<table>
+    <tr>
+        <th>Ім'я</th>
+        <th>Кількість сторінок</th>
+        <th>Дата видачі</th>
+        <th>Видавництво</th>
+    </tr>
+
+    @foreach (var publication in Model.Publications)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(p => publication.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(p => publication.NofPages)
+            </td>
+            <td>
+                @Html.DisplayFor(p => publication.PublicationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(p => publication.Publisher)
+            </td>
+            <td>
+                @Html.CheckBox("Select")
+            </td>
+        </tr>
+
+    }
+</table>
+<input type="submit" value="submit" />
+}

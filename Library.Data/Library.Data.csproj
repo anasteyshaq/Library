@@ -181,7 +181,10 @@
     <Compile Include="Entities\StorageAggregate\PublicationInStorage .cs" />
     <Compile Include="Entities\ReaderAggregate\Reader.cs" />
     <Compile Include="Entities\StorageAggregate\Storage.cs" />
-    <Compile Include="Repositories\ICatalog.cs" />
+    <Compile Include="Repositories\IPublicationRepository.cs" />
+    <Compile Include="Repositories\ICopyRepository.cs" />
+    <Compile Include="Repositories\IReaderRepository.cs" />
+    <Compile Include="Repositories\IStorageRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
