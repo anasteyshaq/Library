@@ -60,7 +60,7 @@ namespace Library.EF.Repositories
         {
             using (var ctx = new BooksContext())
             {
-                return ctx.CopiesinForms.OrderByDescending(x=>x.ReturnDate).
+                return ctx.CopiesinForms.OrderByDescending(x => x.ReturnDate).
                     Where(x => x.CopyId == CopyId).ToList();
             }
             // выборка сортированных по дате возвращения записей экземпляра в формулярах по его ай ди.
@@ -74,5 +74,47 @@ namespace Library.EF.Repositories
             // выборка сортированных по дате возвращения записей экземпляра в формулярах по его ай ди.
         }
         #endregion
+        public void CreateCopyInForm(int ReaderId, int CopyId)
+        {
+            using (var ctx = new BooksContext())
+            {
+                CopyInForm copyInForm = new CopyInForm()
+                {
+                    CopyId = CopyId,
+                    ReaderId = ReaderId,
+                    DateOfIssue = DateTime.Today,
+                    ReturnDate = null,
+                    EstimatedReturnDate = DateTime.Today.AddDays(14)
+                };
+                ctx.CopiesinForms.Add(copyInForm);
+                ctx.SaveChanges();
+            }
+        }
+        public List<CopyInForm> GetAllCopiesInFormByReaderId(int ReaderId)
+        {
+            using (var ctx = new BooksContext())
+            {
+                return ctx.CopiesinForms.Where(x => x.ReaderId == ReaderId).ToList();
+            }
+
+        }
+        public void DeleteCopyInForm(int CopyInFormId)
+        {
+            using (var ctx = new BooksContext())
+            {
+                var copyInForm = ctx.CopiesinForms.Where(x => x.Id == CopyInFormId).Single();
+                ctx.CopiesinForms.Remove(copyInForm);
+                ctx.SaveChanges();
+            }
+        }
+        public CopyInForm GetCopyInForm(int ReaderId, int CopyId)
+        {
+            using (var ctx = new BooksContext())
+            {
+                return ctx.CopiesinForms.Where(x => x.ReaderId == ReaderId &&
+                x.CopyId == CopyId).FirstOrDefault();
+            }
+        }
     }
+ 
 }

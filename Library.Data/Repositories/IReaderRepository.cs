@@ -12,5 +12,7 @@ namespace Library.Data.Repositories
         Reader Get(int ReaderId);
         void CreateReader(Reader reader);
         void UpdateReader(Reader reader);
+        Reader GetByLoginData(string Email, string Password);
+        Reader GetByEmail(string Email);
     }
 }

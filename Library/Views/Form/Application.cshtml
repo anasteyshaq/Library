@@ -1,0 +1,52 @@
+﻿@model Library.Models.CreateApplicationModel
+
+@{
+    ViewBag.Title = "Application";
+}
+
+<h2>Записи, що будуть додані в формуляр:</h2>
+<table>
+    <tr>
+        <th>Дата отримання</th>
+        <th>Повернути до</th>
+        <th>Ім'я</th>
+        <th>Кількість сторінок</th>
+        <th>Дата видачі</th>
+        <th>Видавництво</th>
+    </tr>
+
+    @for (int i = 0; i < Model.SelectedPublications.Count; i++)
+    {
+<tr>
+
+    <td>
+        @Html.TextBoxFor(m => m.CopiesInForm[i].DateOfIssue, new { @class = "form-control", @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.TextBoxFor(m => m.CopiesInForm[i].EstimatedReturnDate, new { @class = "form-control", @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.TextBoxFor(p => p.SelectedPublications[i].Name, new { @class = "form-control", @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.TextBoxFor(p => p.SelectedPublications[i].NofPages, new { @class = "form-control", @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.TextBoxFor(p => p.SelectedPublications[i].PublicationDate, new { @class = "form-control", @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.TextBoxFor(p => p.SelectedPublications[i].Publisher, new { @class = "form-control", @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.ActionLink("Переглянути деталі", "Info", new { id = Model.SelectedPublications[i].Id })
+    </td>
+    <td>
+        @Html.HiddenFor(m => m.CopiesInForm[i].Id, new { @class = "form-control", @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.HiddenFor(p => p.SelectedPublications[i].Id, new { @class = "form-control", @readonly = "readonly" })
+    </td>
+</tr>
+
+    }
+</table>

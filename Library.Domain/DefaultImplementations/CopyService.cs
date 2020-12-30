@@ -15,8 +15,13 @@ namespace Library.Domain.DefaultImplementations
         }
         public bool CheckIfAvailable(Copy copy)
         {
-            var res = _copyRepo.GetAllCopiesInForm(copy.Id).First(); //получение всех записей для экземпляра
-            return (res.ReturnDate != null);
+            var res = _copyRepo.GetAllCopiesInForm(copy.Id); //получение всех записей для экземпляра
+            foreach (var p in res)
+            {
+                if (p.ReturnDate == null)
+                    return false;
+            }    
+            return true;
         }
     }
 }

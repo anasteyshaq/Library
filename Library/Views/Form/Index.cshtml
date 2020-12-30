@@ -5,37 +5,41 @@
 }
 
 <h2>База книг</h2>
-@using (Html.BeginForm("CreateApplication", "Form"))
+@using (Html.BeginForm("CreateApplication", "Form", FormMethod.Post))
 {
-<table>
-    <tr>
-        <th>Ім'я</th>
-        <th>Кількість сторінок</th>
-        <th>Дата видачі</th>
-        <th>Видавництво</th>
-    </tr>
-
-    @foreach (var publication in Model.Publications)
-    {
+    <table>
         <tr>
-            <td>
-                @Html.DisplayFor(p => publication.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(p => publication.NofPages)
-            </td>
-            <td>
-                @Html.DisplayFor(p => publication.PublicationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(p => publication.Publisher)
-            </td>
-            <td>
-                @Html.CheckBox("Select")
-            </td>
+            <th>Ім'я</th>
+            <th>Кількість сторінок</th>
+            <th>Дата видачі</th>
+            <th>Видавництво</th>
         </tr>
 
-    }
-</table>
-<input type="submit" value="submit" />
+        @for (int i = 0; i < Model.Publications.Count; i++)
+        {
+    <tr>
+
+        <td>
+            @Html.TextBoxFor(p => p.Publications[i].Name, new { @class = "form-control", @readonly = "readonly" })
+        </td>
+        <td>
+            @Html.TextBoxFor(p => p.Publications[i].NofPages, new { @class = "form-control", @readonly = "readonly" })
+        </td>
+        <td>
+            @Html.TextBoxFor(p => p.Publications[i].PublicationDate, new { @class = "form-control", @readonly = "readonly" })
+        </td>
+        <td>
+            @Html.TextBoxFor(p => p.Publications[i].Publisher, new { @class = "form-control", @readonly = "readonly" })
+        </td>
+        <td>
+            @Html.CheckBoxFor(m => m.Select[i])
+        </td>
+        <td>
+            @Html.HiddenFor(p => p.Publications[i].Id, new { @class = "form-control", @readonly = "readonly" })
+        </td>
+    </tr>
+
+        }
+    </table>
+    <input type="submit" value="submit" />
 }

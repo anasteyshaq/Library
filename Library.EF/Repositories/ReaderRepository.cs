@@ -34,6 +34,21 @@ namespace Library.EF.Repositories
                 return ctx.Readers.First(x => x.Id == ReaderId);
             }
         }
+
+        public Reader GetByLoginData(string Email, string Password)
+        {
+            using (var ctx = new BooksContext())
+            {
+                return ctx.Readers.FirstOrDefault(x => x.EMail == Email && x.Password == Password);
+            }
+        }
+        public Reader GetByEmail(string Email)
+        {
+            using (var ctx = new BooksContext())
+            {
+                return ctx.Readers.FirstOrDefault(x => x.EMail == Email);
+            }
+        }
         #endregion
     }
 }

@@ -87,6 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\202012271817508_delete-invnum.cs" />
+    <Compile Include="Migrations\202012271817508_delete-invnum.designer.cs">
+      <DependentUpon>202012271817508_delete-invnum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012271844152_delete-reader-copyinform-ticknum.cs" />
+    <Compile Include="Migrations\202012271844152_delete-reader-copyinform-ticknum.designer.cs">
+      <DependentUpon>202012271844152_delete-reader-copyinform-ticknum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012282034326_add-pass.cs" />
+    <Compile Include="Migrations\202012282034326_add-pass.designer.cs">
+      <DependentUpon>202012282034326_add-pass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\PublicationRepository.cs" />
     <Compile Include="Migrations\202012082026204_InitialCreate.cs" />
     <Compile Include="Migrations\202012082026204_InitialCreate.designer.cs">
@@ -120,6 +132,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012151930007_LibraryDB-v1.resx">
       <DependentUpon>202012151930007_LibraryDB-v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012271817508_delete-invnum.resx">
+      <DependentUpon>202012271817508_delete-invnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012271844152_delete-reader-copyinform-ticknum.resx">
+      <DependentUpon>202012271844152_delete-reader-copyinform-ticknum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012282034326_add-pass.resx">
+      <DependentUpon>202012282034326_add-pass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

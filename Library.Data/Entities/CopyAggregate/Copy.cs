@@ -9,7 +9,7 @@ namespace Library.Data
         public int Id { get; set; }
         public int PublicationId { get; set; }
         public DateTime DateInSystem { get; set; }
-        public int InventoryNumber { get; set; }
+        //public int InventoryNumber { get; set; }
         public List<CopyInForm> CopiesInForm { get; set; }
     }
 }

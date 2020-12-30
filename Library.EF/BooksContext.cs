@@ -5,7 +5,7 @@ using Library.Data.Entities;
 
 namespace Library.EF
 {
-    class BooksContext : DbContext
+    public class BooksContext : DbContext
     {
         public BooksContext() : base("Library")
         {

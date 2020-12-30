@@ -1,0 +1,16 @@
+﻿@model Library.Data.Publication
+@{
+    ViewBag.Title = "Info";
+}
+
+<div>
+    <h4>Екземпляр @Model.</h4>
+    <hr />
+    <dl>
+        <dt>Название</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>

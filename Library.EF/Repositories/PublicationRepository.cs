@@ -21,7 +21,7 @@ namespace Library.EF.Repositories
             }
         }
 
-        public Publication GetPublicationDetails(int PublicationId)
+        public Publication GetPublicationDetails(int? PublicationId)
         {
             using (var ctx = new BooksContext())
             {
