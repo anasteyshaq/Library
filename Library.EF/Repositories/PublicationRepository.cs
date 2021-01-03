@@ -56,7 +56,13 @@ namespace Library.EF.Repositories
                 ctx.SaveChanges();
             }
         }
-
+        public List<Publication> GetAvailablePublications()
+        {
+            using (var ctx = new BooksContext())
+            {
+                return ctx.Publications.ToList();
+            }
+        }
         #endregion
     }
 }

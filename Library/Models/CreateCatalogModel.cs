@@ -8,7 +8,6 @@ namespace Library.Models
 {
     public class CreateCatalogModel
     {
-        public List<Publication> Publications { get; set; }
-        public List<bool> Select { get; set; }
+        public List<PublicationInFormViewModel> Publications { get; set; }
     }
 }

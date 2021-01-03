@@ -49,6 +49,7 @@ namespace Library.App_Start
             kernel.Bind<IReaderRepository>().To<ReaderRepository>();
             kernel.Bind<IStorageRepository>().To<StorageRepository>();
             kernel.Bind<ICopyService>().To<CopyService>();
+            kernel.Bind<IPublicationService>().To<PublicationService>();
         }
     }
 }

@@ -17,28 +17,43 @@ namespace Library.Controllers
         ICopyRepository _copyRepo;
         IReaderRepository _readerRepo;
         IStorageRepository _storageRepo;
+        IPublicationService _publicationService;
 
         public FormController(IPublicationRepository catalog,
             ICopyService copyServ,
             ICopyRepository copyRepo,
             IReaderRepository readerRepo,
-            IStorageRepository storageRepo)
+            IStorageRepository storageRepo,
+            IPublicationService publicationService)
         {
             _catalog = catalog;
             _copyServ = copyServ;
             _copyRepo = copyRepo;
             _readerRepo = readerRepo;
             _storageRepo = storageRepo;
+            _publicationService = publicationService;
         }
-    
+
         [HttpGet]
         public ActionResult Index()
         {
             var publications = _catalog.GetAllPublications();
-            var model = new CreateCatalogModel()
+            CreateCatalogModel model = new CreateCatalogModel();
+            var publicationInForms = new List<PublicationInFormViewModel>();
+
+            foreach (var p in publications)
             {
-                Publications = publications
-            };
+                if (_publicationService.CheckIfAvailable(p))
+                {
+                    var availablePublication = new PublicationInFormViewModel()
+                    {
+                        Publication = p,
+                        IsAdded = false
+                    };
+                    publicationInForms.Add(availablePublication);
+                }
+            }
+            model.Publications = publicationInForms;
             return View(model);
         }
         [HttpPost]
@@ -47,20 +62,21 @@ namespace Library.Controllers
             var selectedPublications = new List<Copy>();
             for (int i = 0; i < model.Publications.Count; i++)
             {
-                var parameters = new PublicationParameters()
+                var parameters = new PublicationInFormViewModel()
                 {
-                    Publication = model.Publications[i],
-                    Select = model.Select[i]
+                    Publication = model.Publications[i].Publication,
+                    IsAdded = model.Publications[i].IsAdded
                 };
-                if (parameters.Select == true)
+                if (parameters.IsAdded == true)
                 {
-                    var copies = _copyRepo.GetAllCopiesByPublicationId(model.Publications[i].Id);
+                    var copies = _copyRepo.
+                        GetAllCopiesByPublicationId(model.Publications[i].Publication.Id);
                     if (copies != null)
                     {
                         foreach (var copy in copies)
                         {
                             var check = _copyServ.CheckIfAvailable(copy);
-                            if(check == true)
+                            if (check == true)
                             {
                                 selectedPublications.Add(copy);
                                 break;
@@ -95,7 +111,8 @@ namespace Library.Controllers
             var publications = new List<Publication>();
             for (int i = 0; i < copies.Count; i++)
             {
-                var publication = _catalog.GetPublicationDetails(copies[i].PublicationId);
+                var publication = _catalog.
+                    GetPublicationDetails(copies[i].PublicationId);
                 publications.Add(publication);
             }
             var model = new CreateApplicationModel
@@ -104,7 +121,7 @@ namespace Library.Controllers
                 CopiesInForm = copiesInForm
             };
 
-            return View("Application",model);
+            return View("Application", model);
         }
         [HttpGet]
         public ActionResult Info(int? id)
@@ -116,7 +133,7 @@ namespace Library.Controllers
             else
             {
                 var shtuka = _catalog.GetPublicationDetails(id);
-                return View("Info","Form",shtuka);
+                return View("Info", "Form", shtuka);
             }
 
         }

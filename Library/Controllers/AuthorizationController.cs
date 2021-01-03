@@ -31,10 +31,9 @@ namespace Library.Controllers
             {
                 // поиск пользователя в бд
                 Reader reader = null;
-                using (BooksContext ctx = new BooksContext())
-                {
-                    reader=_readerRepo.GetByLoginData(model.EMail, model.Password);
-                }
+
+                reader=_readerRepo.GetByLoginData(model.EMail, model.Password);
+                
                 if (reader != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.EMail, true);

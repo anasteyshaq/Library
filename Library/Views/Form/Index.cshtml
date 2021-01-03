@@ -1,5 +1,4 @@
 ﻿@model Library.Models.CreateCatalogModel
-
 @{
     ViewBag.Title = "Catalog";
 }
@@ -20,22 +19,22 @@
     <tr>
 
         <td>
-            @Html.TextBoxFor(p => p.Publications[i].Name, new { @class = "form-control", @readonly = "readonly" })
+            @Html.TextBoxFor(p => p.Publications[i].Publication.Name, new { @class = "form-control", @readonly = "readonly" })
         </td>
         <td>
-            @Html.TextBoxFor(p => p.Publications[i].NofPages, new { @class = "form-control", @readonly = "readonly" })
+            @Html.TextBoxFor(p => p.Publications[i].Publication.NofPages, new { @class = "form-control", @readonly = "readonly" })
         </td>
         <td>
-            @Html.TextBoxFor(p => p.Publications[i].PublicationDate, new { @class = "form-control", @readonly = "readonly" })
+            @Html.TextBoxFor(p => p.Publications[i].Publication.PublicationDate, new { @class = "form-control", @readonly = "readonly" })
         </td>
         <td>
-            @Html.TextBoxFor(p => p.Publications[i].Publisher, new { @class = "form-control", @readonly = "readonly" })
+            @Html.TextBoxFor(p => p.Publications[i].Publication.Publisher, new { @class = "form-control", @readonly = "readonly" })
         </td>
         <td>
-            @Html.CheckBoxFor(m => m.Select[i])
+            @Html.CheckBoxFor(p => p.Publications[i].IsAdded)
         </td>
         <td>
-            @Html.HiddenFor(p => p.Publications[i].Id, new { @class = "form-control", @readonly = "readonly" })
+            @Html.HiddenFor(p => p.Publications[i].Publication.Id, new { @class = "form-control", @readonly = "readonly" })
         </td>
     </tr>
 

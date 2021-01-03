@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="DefaultImplementations\CopyService.cs" />
     <Compile Include="DefaultImplementations\PublicationParameters.cs" />
+    <Compile Include="DefaultImplementations\PublicationService.cs" />
     <Compile Include="Interfaces\ICopyService.cs" />
+    <Compile Include="Interfaces\IPublicationService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

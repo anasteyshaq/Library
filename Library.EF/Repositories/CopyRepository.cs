@@ -115,6 +115,20 @@ namespace Library.EF.Repositories
                 x.CopyId == CopyId).FirstOrDefault();
             }
         }
+        public void CreateNCopiesByPublicationId(int publicationId, int number)
+        {
+            using (var ctx = new BooksContext())
+            {
+                for (int i = 0; i < number; i++)
+                {
+                    var copy = new Copy()
+                    {
+                        DateInSystem = DateTime.Today,
+                        PublicationId = publicationId
+                    };
+                    CreateCopy(copy);
+                }
+            }
+        }
     }
- 
 }
