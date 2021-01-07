@@ -39,7 +39,7 @@ namespace Library.EF.Repositories
         {
             using (var ctx = new BooksContext())
             {
-                return ctx.Storages.SingleOrDefault(x => x.Id == StorageId);
+                return ctx.Storages.Include("PublicationsInStorages").SingleOrDefault(x => x.Id == StorageId);
             }
         }
 
