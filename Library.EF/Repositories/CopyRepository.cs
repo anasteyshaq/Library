@@ -18,7 +18,8 @@ namespace Library.EF.Repositories
         {
             using (var ctx = new BooksContext())
             {
-                return ctx.Copies.Include("CopiesInForm").SingleOrDefault(x => x.Id == CopyId);
+                return ctx.Copies.Include("CopiesInForm").
+                    SingleOrDefault(x => x.Id == CopyId);
             }
         }
         public void CreateCopy(Copy copy)
@@ -34,7 +35,8 @@ namespace Library.EF.Repositories
         {
             using (var ctx = new BooksContext())
             {
-                return ctx.Copies.Where(x => x.PublicationId == PublicationId).ToList();
+                return ctx.Copies.Include("CopiesInForm").
+                    Where(x => x.PublicationId == PublicationId).ToList();
             }
             
         }
@@ -60,7 +62,8 @@ namespace Library.EF.Repositories
         {
             using (var ctx = new BooksContext())
             {
-                return ctx.CopiesinForms.Where(x => x.ReaderId == ReaderId &&
+                return ctx.CopiesinForms.Include("Copy").
+                    Where(x => x.ReaderId == ReaderId &&
                 x.CopyId == CopyId).FirstOrDefault();
             }
         }

@@ -31,7 +31,7 @@ namespace Library.EF.Repositories
         {
             using (var ctx = new BooksContext())
             {
-                return ctx.Storages.ToList();
+                return ctx.Storages.Include("PublicationsInStorages").ToList();
             }
         }
 
